@@ -1,0 +1,125 @@
+How to run guidelines:
+
+note: must have python 3.9+
+
+STEP 1: Copy or clone the following files into a single project directory:
+        1. main.py
+        2. config.py
+        3. graph_builder.py
+        4. ray_workers.py
+        5. check_ouput.py
+        6. commoncrawl_fetcher.py
+        7. requirements.txt
+
+Your directory should look like this:
+  project/
+  ├── main.py
+  ├── config.py
+  ├── commoncrawl_fetcher.py
+  ├── ray_workers.py
+  ├── graph_builder.py
+  ├── check_output.py
+  └── requirements.txt
+
+
+Step 2: SET UP A VIRTUAL ENVIRONMENT (RECOMMENDED)
+run the following commands in your terminal
+
+  # Create virtual environment
+  python -m venv venv
+ 
+  # Activate it
+  # On Windows:
+  venv\Scripts\activate
+ 
+  # On Mac/Linux:
+  source venv/bin/activate
+
+STEP 3: INSTALL DEPENDENCIES -- this will download all the needed dependies to run the system.
+   pip install -r requirements.txt
+
+
+STEP 4: RUN THE CRAWLER
+
+
+  -> Option A: Default run (500 records, en.wikipedia.org, 4 workers)
+  python main.py
+ 
+  -> Option B: Custom settings 
+  python main.py --domain en.wikipedia.org --max-records 200 --num-workers 4
+ 
+  -> Option C: Dry run (no internet needed — uses synthetic data)
+  python main.py --dry-run
+ 
+  ALWAYS run the dry run first to confirm Ray and all dependencies
+  are working correctly before making real network calls.
+
+
+
+EXAMPLE RUNS (THE FOUR CONFIGURATIONS USED IN THE REPORT)
+
+
+  # Config 1 — Baseline (200 records, 4 workers, batch size 25)
+  python main.py --domain en.wikipedia.org --max-records 200 --num-workers 4 --output-dir output_config1
+ 
+  # Config 2 — Fewer workers (200 records, 2 workers, batch size 25)
+  python main.py --domain en.wikipedia.org --max-records 200 --num-workers 2 --output-dir output_config2
+ 
+  # Config 3 — Larger workload (500 records, 4 workers, batch size 25)
+  python main.py --domain en.wikipedia.org --max-records 500 --num-workers 4 --output-dir output_config3
+ 
+  # Config 4 — Smaller batch size (200 records, 4 workers, batch size 10)
+  python main.py --domain en.wikipedia.org --max-records 200 --num-workers 4 --batch-size 10 --output-dir output_config4
+ 
+  NOTE: Use a different --output-dir for each run to prevent
+        output files from being overwritten.
+
+
+
+
+STEP 5 — VERIFY OUTPUT
+
+After main.py finishes, run the verification script:
+ 
+  python check_output.py
+ 
+This prints:
+  - Number of pages crawled
+  - Total directed edges extracted
+  - 3 sample pages with their outgoing links
+
+
+
+OUTPUT FILES
+
+
+fter a successful run, the following files are saved in your
+output directory (default: output/):
+ 
+  web_graph.json          — JSON adjacency list { url: [url, url, ...] }
+  web_graph_edges.csv     — CSV edge list (source, target per row)
+  web_graph.pkl           — NetworkX DiGraph pickle (for Milestone 2)
+
+
+
+
+
+
+DISTRIBUTED MODE (OPTIONAL — per instructor recommendation)
+
+To run on a Ray cluster across multiple machines:
+ 
+  # On the head node:
+  ray start --head --port=6379
+ 
+  # On each worker node:
+  ray start --address='<head-node-ip>:6379'
+ 
+  # Run the crawler against the cluster:
+  python main.py --ray-address ray://<head-node-ip>:10001 --max-records 5000 --num-workers 16
+
+
+
+
+
+

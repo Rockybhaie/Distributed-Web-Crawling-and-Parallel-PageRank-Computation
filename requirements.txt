@@ -1,0 +1,23 @@
+# requirements.txt — Milestone 1 Dependencies
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Python 3.9+ required.
+
+# Parallel / distributed runtime
+ray[default]>=2.9.0        # Task-based parallelism + Actor model
+
+# CommonCrawl / HTTP 
+requests>=2.31.0           # HTTP client used for CDX API + WARC range requests
+warcio>=1.7.4              # Parse WARC archive files returned by CommonCrawl
+
+# HTML parsing 
+beautifulsoup4>=4.12.0     # Link extraction from HTML pages
+lxml>=5.1.0                # Fast HTML parser backend for BeautifulSoup
+
+# Graph analysis 
+networkx>=3.2.0            # In-memory graph representation + structural metrics
+
+# Utilities
+tqdm>=4.66.0               # Progress bars (optional but helpful for long runs)

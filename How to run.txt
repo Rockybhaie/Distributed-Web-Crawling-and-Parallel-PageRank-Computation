@@ -1,0 +1,85 @@
+
+------------------------------
+STEP 1 — FILE STRUCTURE CHECK
+------------------------------
+
+After cloning your project directory should look like this:
+
+  project/
+  ├── (Milestone 1 .py files)
+  ├── output_config1/            
+  │   └── web_graph.pkl
+  ├── output_config3/           
+  │   └── web_graph.pkl
+  ├── pagerank_config.py
+  ├── graph_loader.py
+  ├── pagerank_sequential.py
+  ├── pagerank_parallel.py
+  ├── performance_analysis.py
+  ├── main_pagerank.py
+  └── requirements_m2.txt
+
+------------------------------------------------
+STEP 2 — CREATE & ACTIVATE A VIRTUAL ENVIRONMENT
+------------------------------------------------
+   Create the environment (do this only once):  python -m venv ray_env
+
+   Activate the environment: Windows       : ray_env\Scripts\activate
+                             macOS / Linux : source ray_env/bin/activate
+
+ (You should see (ray_env) appear at the start of your terminal prompt, confirming the environment is active.)
+
+-----------------------------
+STEP 3 — INSTALL DEPENDENCIES
+-----------------------------
+
+  pip install -r requirements_m2.txt
+  also additionally run the following command: 
+  pip install scipy psutil numpy
+
+
+-------------------------------------------------
+STEP 4 — VERIFY EVERYTHING WORKS (Run this first)
+-------------------------------------------------
+  python main_pagerank.py --strategy centralized --workers 4 --graph output_config3/web_graph.pkl --no-convergence --max-iter 5 --output-dir results_verify
+
+  If it completes without errors and you see a results_verify/ folder created,
+  you are good to go.
+
+
+
+
+---------------------------------------------------------
+STEP 5 -- run with whatever confuiguration you wanna try:
+---------------------------------------------------------
+
+
+GENERAL FORMAT: python main_pagerank.py --graph <graph_path> --output-dir <output_dir> [options]
+
+Below are the configurations that were tested by out group: 
+
+1.  python main_pagerank.py --graph output_config3/web_graph.pkl --output-dir results_test1_baseline
+2.  python main_pagerank.py --strategy centralized --workers 1 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test2_w1
+3.  python main_pagerank.py --strategy centralized --workers 2 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test3_w2
+4.  python main_pagerank.py --strategy centralized --workers 4 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test4_w4
+5.  python main_pagerank.py --strategy centralized --workers 4 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test5_centralized
+6.  python main_pagerank.py --strategy distributed --workers 4 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test6_distributed
+7.  python main_pagerank.py --strategy centralized --workers 4 --graph output_config3/web_graph.pkl --output-dir results_test7_convergence
+8.  python main_pagerank.py --strategy centralized --workers 4 --no-convergence --max-iter 20 --graph output_config3/web_graph.pkl --output-dir results_test8_fixed20
+9.  python main_pagerank.py --strategy centralized --workers 4 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test9_fixed50
+10. python main_pagerank.py --workers 4 --graph output_config1/web_graph.pkl --output-dir results_test10_config1
+11. python main_pagerank.py --workers 4 --graph output_config3/web_graph.pkl --output-dir results_test11_config3
+12. python main_pagerank.py --strategy centralized --workers 4 --damping 0.50 --graph output_config3/web_graph.pkl --output-dir results_test12_d050
+13. python main_pagerank.py --strategy centralized --workers 4 --damping 0.85 --graph output_config3/web_graph.pkl --output-dir results_test13_d085
+14. python main_pagerank.py --strategy centralized --workers 4 --damping 0.99 --graph output_config3/web_graph.pkl --output-dir results_test14_d099
+
+
+
+
+
+------------------------------------
+STEP  6 DEACTIVATING THE ENVIRONMENT
+------------------------------------
+
+  When you are done, deactivate the virtual environment with:   
+  deactivate

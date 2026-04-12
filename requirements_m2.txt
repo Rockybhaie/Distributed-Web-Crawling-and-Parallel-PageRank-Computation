@@ -1,0 +1,14 @@
+# requirements_m2.txt — Milestone 2 Dependencies
+#
+# Install with:
+#   pip install -r requirements_m2.txt
+
+
+# Already installed from Milestone 1 
+ray[default]>=2.9.0
+networkx>=3.2.0
+
+# Additional for Milestone 2
+numpy>=1.26.0          # Fast array operations for large rank vectors
+matplotlib>=3.8.0      # Plotting convergence curves and bar charts (optional)
+pandas>=2.1.0          # Tabular results analysis (optional)

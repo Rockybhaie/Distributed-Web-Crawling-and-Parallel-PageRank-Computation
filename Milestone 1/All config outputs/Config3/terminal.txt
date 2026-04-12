@@ -1,0 +1,69 @@
+(venv) D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2>python main.py --domain en.wikipedia.org --max-records 500 --num-workers 4
+09:58:08  INFO      main — ============================================================
+09:58:08  INFO      main — Milestone 1 — Parallel Web Crawling & Graph Construction
+09:58:08  INFO      main — ============================================================
+09:58:08  INFO      main — Config: {'crawl_index': 'CC-MAIN-2024-10', 'target_domain': 'en.wikipedia.org', 'max_records': 
+500, 'batch_size': 25, 'max_links_per_page': 150, 'restrict_to_domain': 'en.wikipedia.org', 'num_workers': 4, 'request_timeout': 30, 'max_retries': 3, 'user_agent': 'PDC-Course-Crawler/1.0 (academic project; uses CommonCrawl data only - no live crawling)', 'output_dir': 'output', 'graph_filename': 'web_graph'}
+09:58:08  INFO      main — Phase 1: Querying CommonCrawl CDX API …
+09:58:08  INFO      commoncrawl_fetcher — Querying CommonCrawl CDX API | index=CC-MAIN-2024-10 domain=en.wikipedia.org limit=500
+09:58:10  INFO      commoncrawl_fetcher — Retrieved 500 usable CDX records.
+09:58:10  INFO      main — Phase 1 done in 1.8s | 500 records retrieved.
+09:58:10  INFO      main — Phase 2: Initialising Ray …
+09:58:10  INFO      main — Starting local Ray instance with 4 CPUs.
+2026-03-22 09:58:30,010 INFO worker.py:2004 -- Started a local Ray instance. View the dashboard at http://127.0.0.1:8265 
+D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py:2052: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+09:58:32  INFO      main — Phase 2: Dispatching parallel Ray tasks …
+09:58:32  INFO      ray_workers — Starting parallel crawl | records=500  batch_size=25  workers=4
+09:58:32  INFO      ray_workers — Partitioned records into 20 batches.
+(raylet) Stack (most recent call first):
+(raylet)   File "D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py", line 625 in job_logging_config
+(raylet)   File "D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py", line 2800 in disconnect
+(raylet)   File "D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py", line 2132 in shutdown
+(raylet)   File "D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py", line 1144 in wrapper
+10:04:29  INFO      ray_workers — Batch group done | fetched=500  failed=0  links_found=68227
+10:04:29  INFO      ray_workers — Crawl complete | nodes=496  edges=68227  visited=496
+10:04:29  INFO      main — Phase 2 done in 357.1s.
+10:04:29  INFO      main — Phase 3: Retrieving graph from Ray Actor …
+10:04:29  INFO      main — Phase 4: Saving graph to 'output' …
+10:04:30  INFO      graph_builder — Saved JSON adjacency list → output\web_graph.json
+10:04:30  INFO      graph_builder — Saved CSV edge list      → output\web_graph_edges.csv
+10:04:30  INFO      graph_builder — NetworkX graph built | nodes=37074  edges=67667
+10:04:30  INFO      graph_builder — Saved NetworkX pickle    → output\web_graph.pkl
+10:04:30  INFO      main — Saved files:
+10:04:30  INFO      main —   json     → output\web_graph.json  (3997.6 KB)
+10:04:30  INFO      main —   csv      → output\web_graph_edges.csv  (6776.0 KB)
+10:04:30  INFO      main —   pickle   → output\web_graph.pkl  (5157.2 KB)
+10:04:31  INFO      graph_builder — NetworkX graph built | nodes=37074  edges=67667
+
+============================================================
+  WEB GRAPH SUMMARY — Milestone 1
+============================================================
+  Source nodes (pages crawled):         496
+  Directed edges (hyperlinks):       68,227
+  Avg out-degree per page:           137.55
+  Total nodes (incl. targets):       37,074
+  Max in-degree:                        496
+  Max out-degree:                       151
+  Dangling nodes (out-deg = 0):      36,578
+  Weakly connected components:            1
+============================================================
+
+(raylet)   File "D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 104 in wrapper
+10:04:34  INFO      main — Ray shut down. Milestone 1 complete.
+
+
+
+
+(venv) D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2>python check_output.py
+Pages crawled: 496
+Total edges:   68227
+
+https://en.wikipedia.org/?title=Physiotherapy&redirect=no
+  → ['https://en.wikipedia.org/wiki/Main_Page', 'https://en.wikipedia.org/wiki/Wikipedia:Contents', 'https://en.wikipedia.org/wiki/Portal:Current_events']
+
+https://en.wikipedia.org/wiki/%C3%85re
+  → ['https://en.wikipedia.org/wiki/Main_Page', 'https://en.wikipedia.org/wiki/Wikipedia:Contents', 'https://en.wikipedia.org/wiki/Portal:Current_events']
+
+https://en.wikipedia.org/?title=Portal%3ASociety%2FIntro&action=edit
+  → ['https://en.wikipedia.org/wiki/Main_Page', 'https://en.wikipedia.org/wiki/Wikipedia:Contents', 'https://en.wikipedia.org/wiki/Portal:Current_events']

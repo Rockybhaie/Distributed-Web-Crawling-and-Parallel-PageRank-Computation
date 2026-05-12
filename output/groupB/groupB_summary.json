@@ -1,0 +1,29 @@
+[
+  {
+    "name": "parallel_full_range_w4",
+    "dir": "output\\groupB\\parallel_full_range_w4",
+    "partition_strategy": "range",
+    "elapsed_s": 0.5467672001104802,
+    "avg_load_imbalance": 0.46995992742647286,
+    "total_comm_kb": 6519.55078125,
+    "peak_worker_rss_mb": 0.48828125
+  },
+  {
+    "name": "parallel_full_hash_w4",
+    "dir": "output\\groupB\\parallel_full_hash_w4",
+    "partition_strategy": "hash",
+    "elapsed_s": 0.46725320001132786,
+    "avg_load_imbalance": 0.3361968473846456,
+    "total_comm_kb": 6519.55078125,
+    "peak_worker_rss_mb": 0.44921875
+  },
+  {
+    "name": "parallel_full_edge_balanced_w4",
+    "dir": "output\\groupB\\parallel_full_edge_balanced_w4",
+    "partition_strategy": "edge_balanced",
+    "elapsed_s": 0.47735129995271564,
+    "avg_load_imbalance": 0.26404216261867924,
+    "total_comm_kb": 6519.55078125,
+    "peak_worker_rss_mb": 0.4375
+  }
+]

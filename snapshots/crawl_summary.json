@@ -1,0 +1,29 @@
+{
+  "step": {
+    "from_version": 2,
+    "to_version": 3,
+    "snapshot_paths": {
+      "pickle": "snapshots\\graph_v3.pkl",
+      "json": "snapshots\\graph_v3.json",
+      "csv": "snapshots\\graph_v3_edges.csv"
+    },
+    "delta_path": "snapshots\\delta_v2_v3.json",
+    "delta_summary": {
+      "prev_node_count": 61720,
+      "new_node_count": 99803,
+      "added_nodes": 38083,
+      "prev_edge_count": 110464,
+      "new_edge_count": 178696,
+      "added_edges": 68232
+    },
+    "crawl_stats": {
+      "fetched": 500,
+      "failed": 0,
+      "links": 68682,
+      "cache_hits": 3,
+      "cache_misses": 497,
+      "skipped": 0
+    },
+    "crawl_time_s": 396.54652939992957
+  }
+}

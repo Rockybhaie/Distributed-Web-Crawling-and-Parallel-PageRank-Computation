@@ -1,0 +1,299 @@
+(venv) D:\C++ Projects\Parallel and Distribured Computing Labs\Project Final\Milestone 2>python main_pagerank.py --strategy centralized --workers 4 --no-convergence --max-iter 50 --graph output_config3/web_graph.pkl --output-dir results_test4_w4
+14:00:27  INFO      main_pagerank — ====================================================================
+14:00:27  INFO      main_pagerank — Milestone 2 — Parallel PageRank Computation
+14:00:27  INFO      main_pagerank — ====================================================================
+14:00:27  INFO      main_pagerank — Config: {'graph_path': 'output_config3/web_graph.pkl', 'damping_factor': 0.85, 'max_iterations': 50, 'convergence_threshold': 1e-06, 'use_convergence': False, 'num_workers': 4, 'num_partitions': 4, 'strategy': 'centralized', 'output_dir': 'results_test4_w4', 'save_scores': True}
+14:00:27  INFO      main_pagerank — Phase 1: Loading graph ...
+14:00:27  INFO      graph_loader — Loading graph from pickle: output_config3/web_graph.pkl
+14:00:28  INFO      graph_loader — Graph loaded | nodes=37074  edges=67667
+14:00:28  INFO      graph_loader — Data structures built | dangling_nodes=36578 (98.7% of total)
+14:00:28  INFO      main_pagerank — Graph ready | nodes=37074  edges=67667  dangling=36578 (98.7%)
+14:00:28  INFO      main_pagerank — Partitioned into 4 chunks | avg size=9268 nodes
+14:00:28  INFO      main_pagerank — Phase 2a: Custom sequential PageRank ...
+14:00:28  INFO      pagerank_sequential — Running custom sequential PageRank | nodes=37074  d=0.85  max_iter=50
+14:00:28  INFO      pagerank_sequential —   Iteration   1 | delta=9.09e-03  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   2 | delta=7.49e-05  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   3 | delta=2.97e-06  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   4 | delta=1.29e-07  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   5 | delta=6.36e-09  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   6 | delta=3.24e-10  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   7 | delta=1.71e-11  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   8 | delta=9.55e-13  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration   9 | delta=4.23e-14  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  10 | delta=1.19e-14  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  11 | delta=4.12e-15  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  12 | delta=4.05e-15  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  13 | delta=3.30e-15  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  14 | delta=5.57e-16  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  15 | delta=2.53e-18  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  16 | delta=3.05e-20  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  17 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  18 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:28  INFO      pagerank_sequential —   Iteration  19 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  20 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  21 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  22 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  23 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  24 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  25 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  26 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  27 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  28 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  29 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  30 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  31 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  32 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  33 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  34 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  35 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  36 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  37 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  38 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  39 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  40 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  41 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:29  INFO      pagerank_sequential —   Iteration  42 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  43 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  44 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  45 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  46 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  47 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  48 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  49 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential —   Iteration  50 | delta=0.00e+00  (threshold=1.00e-06)
+14:00:30  INFO      pagerank_sequential — Custom sequential PageRank done | time=2.457s  iterations=50
+
+====================================================================
+  PageRank Results — Sequential (Custom)
+====================================================================
+  Graph:                37,074 nodes  |      67,667 edges
+  Workers:                   1
+  Iterations:               50
+  Damping factor:         0.85
+  Execution time:       2.4568s
+  Rank sum:           1.000000  (should be ~1.0)
+  Gini coefficient:    -0.0054  (0=equal, 1=concentrated)
+
+  Convergence (delta per iteration):
+    Iter   1: 9.0899e-03  ████████
+    Iter   2: 7.4910e-05  ████████████████
+    Iter   3: 2.9740e-06  ██████████████████████
+    Iter   4: 1.2917e-07  ███████████████████████████
+    Iter   5: 6.3592e-09  ██████████████████████████████
+    Iter   6: 3.2396e-10  ██████████████████████████████
+    Iter   7: 1.7061e-11  ██████████████████████████████
+    Iter   8: 9.5508e-13  ██████████████████████████████
+    Iter   9: 4.2287e-14  ██████████████████████████████
+    Iter  10: 1.1856e-14  ██████████████████████████████
+    Iter  11: 4.1156e-15  ██████████████████████████████
+    Iter  12: 4.0459e-15  ██████████████████████████████
+    Iter  13: 3.2958e-15  ██████████████████████████████
+    Iter  14: 5.5659e-16  ██████████████████████████████
+    Iter  15: 2.5343e-18  ██████████████████████████████
+    Iter  16: 3.0493e-20  ██████████████████████████████
+    Iter  17: 0.0000e+00  
+    Iter  18: 0.0000e+00  
+    Iter  19: 0.0000e+00  
+    Iter  20: 0.0000e+00  
+    Iter  21: 0.0000e+00  
+    Iter  22: 0.0000e+00  
+    Iter  23: 0.0000e+00  
+    Iter  24: 0.0000e+00  
+    Iter  25: 0.0000e+00  
+    Iter  26: 0.0000e+00  
+    Iter  27: 0.0000e+00  
+    Iter  28: 0.0000e+00  
+    Iter  29: 0.0000e+00  
+    Iter  30: 0.0000e+00  
+    Iter  31: 0.0000e+00  
+    Iter  32: 0.0000e+00  
+    Iter  33: 0.0000e+00  
+    Iter  34: 0.0000e+00  
+    Iter  35: 0.0000e+00  
+    Iter  36: 0.0000e+00  
+    Iter  37: 0.0000e+00  
+    Iter  38: 0.0000e+00  
+    Iter  39: 0.0000e+00  
+    Iter  40: 0.0000e+00  
+    Iter  41: 0.0000e+00  
+    Iter  42: 0.0000e+00  
+    Iter  43: 0.0000e+00  
+    Iter  44: 0.0000e+00  
+    Iter  45: 0.0000e+00  
+    Iter  46: 0.0000e+00  
+    Iter  47: 0.0000e+00  
+    Iter  48: 0.0000e+00  
+    Iter  49: 0.0000e+00  
+    Iter  50: 0.0000e+00  
+
+  Top 10 Pages by PageRank:
+  ------------------------------------------------------------
+   1. 0.000119  Main_Page
+   2. 0.000119  Wikipedia:Contents
+   3. 0.000119  Portal:Current_events
+   4. 0.000119  Special:Random
+   5. 0.000119  Wikipedia:About
+   6. 0.000119  Wikipedia:Contact_us
+   7. 0.000119  Help:Contents
+   8. 0.000119  Help:Introduction
+   9. 0.000119  Wikipedia:Community_portal
+  10. 0.000119  Special:RecentChanges
+====================================================================
+
+14:00:30  INFO      main_pagerank — Phase 2b: NetworkX PageRank (reference) ...
+14:00:30  INFO      pagerank_sequential — Running NetworkX PageRank | nodes=37074  edges=67667  d=0.85
+14:00:31  INFO      pagerank_sequential — NetworkX PageRank done | time=0.841s  top_node=https://en.wikipedia.org/wiki/Main_Page
+14:00:31  INFO      main_pagerank — NetworkX done in 0.841s
+14:00:31  INFO      main_pagerank — Validating custom sequential against NetworkX ...
+14:00:31  INFO      pagerank_sequential — Validation PASSED | max_diff=1.71e-07  worst_node=https://en.wikipedia.org/wiki/Main_Page
+14:00:31  INFO      main_pagerank — ✓ Custom sequential matches NetworkX — algorithm is correct.
+14:00:31  INFO      main_pagerank — Initialising Ray ...
+2026-04-12 14:00:46,850 INFO worker.py:2004 -- Started a local Ray instance. View the dashboard at http://127.0.0.1:8265 
+D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py:2052: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+14:00:48  INFO      main_pagerank — Phase 3: Parallel PageRank — Centralised Aggregation ...
+14:00:48  INFO      pagerank_parallel — Parallel PageRank [Centralised] | nodes=37074  workers=4  partitions=4
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   1 | delta=9.09e-03 | iter_time=0.2690s | task min=0.0089s max=0.0316s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   2 | delta=7.49e-05 | iter_time=0.0830s | task min=0.0138s max=0.0332s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   3 | delta=2.97e-06 | iter_time=0.0708s | task min=0.0230s max=0.0244s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   4 | delta=1.29e-07 | iter_time=0.0758s | task min=0.0088s max=0.0126s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   5 | delta=6.36e-09 | iter_time=0.0706s | task min=0.0153s max=0.0264s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   6 | delta=3.24e-10 | iter_time=0.0757s | task min=0.0096s max=0.0186s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   7 | delta=1.71e-11 | iter_time=0.0590s | task min=0.0081s max=0.0124s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   8 | delta=9.55e-13 | iter_time=0.0722s | task min=0.0084s max=0.0117s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration   9 | delta=4.23e-14 | iter_time=0.0581s | task min=0.0077s max=0.0119s
+14:00:49  INFO      pagerank_parallel —   [Centralised] Iteration  10 | delta=1.19e-14 | iter_time=0.0807s | task min=0.0106s max=0.0249s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  11 | delta=4.12e-15 | iter_time=0.0820s | task min=0.0095s max=0.0246s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  12 | delta=4.05e-15 | iter_time=0.0621s | task min=0.0084s max=0.0158s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  13 | delta=3.30e-15 | iter_time=0.0767s | task min=0.0071s max=0.0159s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  14 | delta=5.57e-16 | iter_time=0.0608s | task min=0.0103s max=0.0147s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  15 | delta=2.53e-18 | iter_time=0.0763s | task min=0.0182s max=0.0239s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  16 | delta=3.05e-20 | iter_time=0.0816s | task min=0.0078s max=0.0311s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  17 | delta=0.00e+00 | iter_time=0.0774s | task min=0.0098s max=0.0251s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  18 | delta=0.00e+00 | iter_time=0.0746s | task min=0.0100s max=0.0125s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  19 | delta=0.00e+00 | iter_time=0.0653s | task min=0.0127s max=0.0194s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  20 | delta=0.00e+00 | iter_time=0.0799s | task min=0.0108s max=0.0258s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  21 | delta=0.00e+00 | iter_time=0.0810s | task min=0.0110s max=0.0164s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  22 | delta=0.00e+00 | iter_time=0.0661s | task min=0.0110s max=0.0180s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  23 | delta=0.00e+00 | iter_time=0.0832s | task min=0.0127s max=0.0173s
+14:00:50  INFO      pagerank_parallel —   [Centralised] Iteration  24 | delta=0.00e+00 | iter_time=0.0787s | task min=0.0098s max=0.0195s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  25 | delta=0.00e+00 | iter_time=0.0815s | task min=0.0106s max=0.0184s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  26 | delta=0.00e+00 | iter_time=0.0649s | task min=0.0096s max=0.0183s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  27 | delta=0.00e+00 | iter_time=0.0737s | task min=0.0073s max=0.0132s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  28 | delta=0.00e+00 | iter_time=0.0647s | task min=0.0137s max=0.0263s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  29 | delta=0.00e+00 | iter_time=0.0829s | task min=0.0090s max=0.0273s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  30 | delta=0.00e+00 | iter_time=0.0653s | task min=0.0083s max=0.0133s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  31 | delta=0.00e+00 | iter_time=0.0825s | task min=0.0087s max=0.0304s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  32 | delta=0.00e+00 | iter_time=0.0609s | task min=0.0088s max=0.0143s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  33 | delta=0.00e+00 | iter_time=0.0777s | task min=0.0088s max=0.0194s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  34 | delta=0.00e+00 | iter_time=0.0817s | task min=0.0086s max=0.0167s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  35 | delta=0.00e+00 | iter_time=0.0695s | task min=0.0113s max=0.0298s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  36 | delta=0.00e+00 | iter_time=0.0782s | task min=0.0066s max=0.0264s
+14:00:51  INFO      pagerank_parallel —   [Centralised] Iteration  37 | delta=0.00e+00 | iter_time=0.0836s | task min=0.0111s max=0.0152s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  38 | delta=0.00e+00 | iter_time=0.0872s | task min=0.0128s max=0.0284s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  39 | delta=0.00e+00 | iter_time=0.0884s | task min=0.0084s max=0.0271s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  40 | delta=0.00e+00 | iter_time=0.0802s | task min=0.0092s max=0.0170s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  41 | delta=0.00e+00 | iter_time=0.0645s | task min=0.0103s max=0.0151s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  42 | delta=0.00e+00 | iter_time=0.0862s | task min=0.0068s max=0.0269s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  43 | delta=0.00e+00 | iter_time=0.0825s | task min=0.0077s max=0.0293s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  44 | delta=0.00e+00 | iter_time=0.0824s | task min=0.0075s max=0.0297s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  45 | delta=0.00e+00 | iter_time=0.0659s | task min=0.0110s max=0.0282s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  46 | delta=0.00e+00 | iter_time=0.0769s | task min=0.0076s max=0.0106s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  47 | delta=0.00e+00 | iter_time=0.0653s | task min=0.0116s max=0.0288s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  48 | delta=0.00e+00 | iter_time=0.0823s | task min=0.0128s max=0.0235s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  49 | delta=0.00e+00 | iter_time=0.0793s | task min=0.0100s max=0.0127s
+14:00:52  INFO      pagerank_parallel —   [Centralised] Iteration  50 | delta=0.00e+00 | iter_time=0.0778s | task min=0.0171s max=0.0393s
+14:00:52  INFO      pagerank_parallel — [Centralised] Done | time=3.958s  iterations=50  load_imbalance=83.2%  comm=14482.0KB
+
+====================================================================
+  PageRank Results — Parallel Centralised
+====================================================================
+  Graph:                37,074 nodes  |      67,667 edges
+  Workers:                   4
+  Iterations:               50
+  Damping factor:         0.85
+  Execution time:       3.9581s
+  Rank sum:           1.000000  (should be ~1.0)
+  Gini coefficient:    -0.0054  (0=equal, 1=concentrated)
+  Speedup:              0.6207x
+  Efficiency:           0.1552  (1.0 = perfect linear speedup)
+  Parallel fraction:    0.0000  (Amdahl estimate)
+
+  Per-iteration metrics:
+    Avg iter time:      0.0789s
+    Min task time:      0.0066s
+    Max task time:      0.0393s
+    Avg task time:      0.0158s
+    Load imbalance:       83.2%  (0% = perfect balance)
+    Peak memory:          0.47 MB/worker
+    Comm volume:       14482.0 KB total
+
+  Convergence (delta per iteration):
+    Iter   1: 9.0899e-03  ████████
+    Iter   2: 7.4910e-05  ████████████████
+    Iter   3: 2.9740e-06  ██████████████████████
+    Iter   4: 1.2917e-07  ███████████████████████████
+    Iter   5: 6.3592e-09  ██████████████████████████████
+    Iter   6: 3.2396e-10  ██████████████████████████████
+    Iter   7: 1.7061e-11  ██████████████████████████████
+    Iter   8: 9.5508e-13  ██████████████████████████████
+    Iter   9: 4.2287e-14  ██████████████████████████████
+    Iter  10: 1.1856e-14  ██████████████████████████████
+    Iter  11: 4.1156e-15  ██████████████████████████████
+    Iter  12: 4.0459e-15  ██████████████████████████████
+    Iter  13: 3.2958e-15  ██████████████████████████████
+    Iter  14: 5.5659e-16  ██████████████████████████████
+    Iter  15: 2.5343e-18  ██████████████████████████████
+    Iter  16: 3.0493e-20  ██████████████████████████████
+    Iter  17: 0.0000e+00  
+    Iter  18: 0.0000e+00  
+    Iter  19: 0.0000e+00  
+    Iter  20: 0.0000e+00  
+    Iter  21: 0.0000e+00  
+    Iter  22: 0.0000e+00  
+    Iter  23: 0.0000e+00  
+    Iter  24: 0.0000e+00  
+    Iter  25: 0.0000e+00  
+    Iter  26: 0.0000e+00  
+    Iter  27: 0.0000e+00  
+    Iter  28: 0.0000e+00  
+    Iter  29: 0.0000e+00  
+    Iter  30: 0.0000e+00  
+    Iter  31: 0.0000e+00  
+    Iter  32: 0.0000e+00  
+    Iter  33: 0.0000e+00  
+    Iter  34: 0.0000e+00  
+    Iter  35: 0.0000e+00  
+    Iter  36: 0.0000e+00  
+    Iter  37: 0.0000e+00  
+    Iter  38: 0.0000e+00  
+    Iter  39: 0.0000e+00  
+    Iter  40: 0.0000e+00  
+    Iter  41: 0.0000e+00  
+    Iter  42: 0.0000e+00  
+    Iter  43: 0.0000e+00  
+    Iter  44: 0.0000e+00  
+    Iter  45: 0.0000e+00  
+    Iter  46: 0.0000e+00  
+    Iter  47: 0.0000e+00  
+    Iter  48: 0.0000e+00  
+    Iter  49: 0.0000e+00  
+    Iter  50: 0.0000e+00  
+
+  Top 10 Pages by PageRank:
+  ------------------------------------------------------------
+   1. 0.000119  Main_Page
+   2. 0.000119  Wikipedia:Contents
+   3. 0.000119  Portal:Current_events
+   4. 0.000119  Special:Random
+   5. 0.000119  Wikipedia:About
+   6. 0.000119  Wikipedia:Contact_us
+   7. 0.000119  Help:Contents
+   8. 0.000119  Help:Introduction
+   9. 0.000119  Wikipedia:Community_portal
+  10. 0.000119  Special:RecentChanges
+====================================================================
+
+14:00:53  INFO      pagerank_sequential — Validation PASSED | max_diff=0.00e+00  worst_node=None
+14:00:53  INFO      performance_analysis — Saved results -> results_test4_w4\pagerank_parallel_centralised.json
+14:00:55  INFO      main_pagerank — Ray shut down. Milestone 2 complete.

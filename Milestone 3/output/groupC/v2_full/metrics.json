@@ -1,0 +1,139 @@
+{
+  "run_name": "v2_full",
+  "metadata": {
+    "update_strategy": "full",
+    "partition_strategy": "range",
+    "num_workers": 4,
+    "num_nodes": 61720,
+    "num_edges": 110464,
+    "damping_factor": 0.85,
+    "convergence_threshold": 1e-06,
+    "snapshot_path": "snapshots\\graph_v2.pkl"
+  },
+  "total_wall_time_s": 0.7184439999982715,
+  "num_iterations": 4,
+  "avg_iteration_time_s": 0.17200624995166436,
+  "total_compute_time_s": 0.15206749993376434,
+  "total_barrier_wait_s": 0.520858300384134,
+  "total_comm_bytes": 11113800,
+  "total_comm_kb": 10853.3203125,
+  "avg_load_imbalance": 0.3757515617206059,
+  "driver_rss_baseline_mb": 216.578125,
+  "driver_rss_peak_mb": 236.6875,
+  "peak_worker_rss_mb": 0.78515625,
+  "final_delta": 1.0474507564682079e-07,
+  "extras": {
+    "num_iterations": 4,
+    "rank_sum": 0.9999999999997965
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "wall_time_s": 0.2874517999589443,
+      "barrier_wait_s": 0.2478009001351893,
+      "compute_time_s": 0.036713700043037534,
+      "delta": 0.008248080872524023,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 227.3515625,
+      "worker_task_times_s": [
+        0.030198999913409352,
+        0.03062919992953539,
+        0.020309700164943933,
+        0.030165200121700764
+      ],
+      "worker_peak_rss_mb": [
+        0.671875,
+        0.72265625,
+        0.72265625,
+        0.72265625
+      ],
+      "task_min_s": 0.020309700164943933,
+      "task_max_s": 0.03062919992953539,
+      "task_avg_s": 0.02782577503239736,
+      "task_std_s": 0.005015166286753778,
+      "load_imbalance": 0.33691705262730287,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 2,
+      "wall_time_s": 0.13059909990988672,
+      "barrier_wait_s": 0.08662890014238656,
+      "compute_time_s": 0.03897589980624616,
+      "delta": 7.210736830404073e-05,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 232.69140625,
+      "worker_task_times_s": [
+        0.026669499929994345,
+        0.024015799863263965,
+        0.025466599967330694,
+        0.03475390002131462
+      ],
+      "worker_peak_rss_mb": [
+        0.75390625,
+        0.77734375,
+        0.78125,
+        0.73046875
+      ],
+      "task_min_s": 0.024015799863263965,
+      "task_max_s": 0.03475390002131462,
+      "task_avg_s": 0.027726449945475906,
+      "task_std_s": 0.004808951509424011,
+      "load_imbalance": 0.3089753999253311,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 3,
+      "wall_time_s": 0.13152649998664856,
+      "barrier_wait_s": 0.08961350005120039,
+      "compute_time_s": 0.03809940000064671,
+      "delta": 2.5887534113388227e-06,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 235.36328125,
+      "worker_task_times_s": [
+        0.03899149992503226,
+        0.023954099975526333,
+        0.026050900109112263,
+        0.027373400051146746
+      ],
+      "worker_peak_rss_mb": [
+        0.74609375,
+        0.75,
+        0.72265625,
+        0.66796875
+      ],
+      "task_min_s": 0.023954099975526333,
+      "task_max_s": 0.03899149992503226,
+      "task_avg_s": 0.0290924750152044,
+      "task_std_s": 0.006747838885035668,
+      "load_imbalance": 0.38565841217747115,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 4,
+      "wall_time_s": 0.13844759995117784,
+      "barrier_wait_s": 0.09681500005535781,
+      "compute_time_s": 0.03827850008383393,
+      "delta": 1.0474507564682079e-07,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 236.6875,
+      "worker_task_times_s": [
+        0.041563000064343214,
+        0.02386000007390976,
+        0.02196789998561144,
+        0.03374690003693104
+      ],
+      "worker_peak_rss_mb": [
+        0.671875,
+        0.78515625,
+        0.7265625,
+        0.72265625
+      ],
+      "task_min_s": 0.02196789998561144,
+      "task_max_s": 0.041563000064343214,
+      "task_avg_s": 0.030284450040198863,
+      "task_std_s": 0.009122002938076105,
+      "load_imbalance": 0.4714553821523187,
+      "dirty_node_count": null
+    }
+  ]
+}

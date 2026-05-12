@@ -1,0 +1,296 @@
+(venv) D:\C++ Projects\Parallel and Distribured Computing Labs\Project Final\Milestone 2>python main_pagerank.py --workers 4 --graph output_config1/web_graph.pkl --output-dir results_test10_config1
+14:08:43  INFO      main_pagerank — ====================================================================
+14:08:43  INFO      main_pagerank — Milestone 2 — Parallel PageRank Computation
+14:08:43  INFO      main_pagerank — ====================================================================
+14:08:43  INFO      main_pagerank — Config: {'graph_path': 'output_config1/web_graph.pkl', 'damping_factor': 0.85, 'max_iterations': 100, 'convergence_threshold': 1e-06, 'use_convergence': True, 'num_workers': 4, 'num_partitions': 4, 'strategy': 'both', 'output_dir': 'results_test10_config1', 'save_scores': True}
+14:08:43  INFO      main_pagerank — Phase 1: Loading graph ...
+14:08:43  INFO      graph_loader — Loading graph from pickle: output_config1/web_graph.pkl
+14:08:43  INFO      graph_loader — Graph loaded | nodes=15657  edges=25576
+14:08:43  INFO      graph_loader — Data structures built | dangling_nodes=15458 (98.7% of total)
+14:08:43  INFO      main_pagerank — Graph ready | nodes=15657  edges=25576  dangling=15458 (98.7%)
+14:08:43  INFO      main_pagerank — Partitioned into 4 chunks | avg size=3914 nodes
+14:08:43  INFO      main_pagerank — Phase 2a: Custom sequential PageRank ...
+14:08:43  INFO      pagerank_sequential — Running custom sequential PageRank | nodes=15657  d=0.85  max_iter=100
+14:08:43  INFO      pagerank_sequential —   Iteration   1 | delta=8.36e-03  (threshold=1.00e-06)
+14:08:43  INFO      pagerank_sequential —   Iteration   2 | delta=6.07e-05  (threshold=1.00e-06)
+14:08:43  INFO      pagerank_sequential —   Iteration   3 | delta=1.45e-06  (threshold=1.00e-06)
+14:08:43  INFO      pagerank_sequential —   Iteration   4 | delta=3.66e-08  (threshold=1.00e-06)
+14:08:43  INFO      pagerank_sequential — Converged at iteration 4 | delta=3.66e-08
+14:08:43  INFO      pagerank_sequential — Custom sequential PageRank done | time=0.075s  iterations=4
+
+====================================================================
+  PageRank Results — Sequential (Custom)
+====================================================================
+  Graph:                15,657 nodes  |      25,576 edges
+  Workers:                   1
+  Iterations:                4
+  Damping factor:         0.85
+  Execution time:       0.0745s
+  Rank sum:           1.000000  (should be ~1.0)
+  Gini coefficient:    -0.0049  (0=equal, 1=concentrated)
+
+  Convergence (delta per iteration):
+    Iter   1: 8.3623e-03  ████████
+    Iter   2: 6.0667e-05  ████████████████
+    Iter   3: 1.4456e-06  ███████████████████████
+    Iter   4: 3.6558e-08  █████████████████████████████
+
+  Top 10 Pages by PageRank:
+  ------------------------------------------------------------
+   1. 0.000160  Main_Page
+   2. 0.000160  Wikipedia:Contents
+   3. 0.000160  Portal:Current_events
+   4. 0.000160  Special:Random
+   5. 0.000160  Wikipedia:About
+   6. 0.000160  Wikipedia:Contact_us
+   7. 0.000160  Help:Contents
+   8. 0.000160  Help:Introduction
+   9. 0.000160  Wikipedia:Community_portal
+  10. 0.000160  Special:RecentChanges
+====================================================================
+
+14:08:43  INFO      main_pagerank — Phase 2b: NetworkX PageRank (reference) ...
+14:08:43  INFO      pagerank_sequential — Running NetworkX PageRank | nodes=15657  edges=25576  d=0.85
+14:08:44  INFO      pagerank_sequential — NetworkX PageRank done | time=0.376s  top_node=https://en.wikipedia.org/wiki/Main_Page
+14:08:44  INFO      main_pagerank — NetworkX done in 0.376s
+14:08:44  INFO      main_pagerank — Validating custom sequential against NetworkX ...
+14:08:44  INFO      pagerank_sequential — Validation PASSED | max_diff=4.35e-07  worst_node=https://en.wikipedia.org/wiki/Main_Page
+14:08:44  INFO      main_pagerank — ✓ Custom sequential matches NetworkX — algorithm is correct.
+14:08:44  INFO      main_pagerank — Initialising Ray ...
+2026-04-12 14:09:01,548 INFO worker.py:2004 -- Started a local Ray instance. View the dashboard at http://127.0.0.1:8265 
+D:\C++ Projects\Parallel and Distribured Computing Labs\Project 2\venv\Lib\site-packages\ray\_private\worker.py:2052: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+14:09:04  INFO      main_pagerank — Phase 3: Parallel PageRank — Centralised Aggregation ...
+14:09:04  INFO      pagerank_parallel — Parallel PageRank [Centralised] | nodes=15657  workers=4  partitions=4
+14:09:04  INFO      pagerank_parallel —   [Centralised] Iteration   1 | delta=8.36e-03 | iter_time=0.2854s | task min=0.0046s max=0.0208s
+14:09:04  INFO      pagerank_parallel —   [Centralised] Iteration   2 | delta=6.07e-05 | iter_time=0.0513s | task min=0.0054s max=0.0125s
+14:09:04  INFO      pagerank_parallel —   [Centralised] Iteration   3 | delta=1.45e-06 | iter_time=0.1569s | task min=0.0057s max=0.0126s
+14:09:04  INFO      pagerank_parallel —   [Centralised] Iteration   4 | delta=3.66e-08 | iter_time=0.0977s | task min=0.0059s max=0.0114s
+14:09:04  INFO      pagerank_parallel — [Centralised] Converged at iteration 4 | delta=3.66e-08
+14:09:04  INFO      pagerank_parallel — [Centralised] Done | time=0.594s  iterations=4  load_imbalance=78.0%  comm=489.3KB
+
+====================================================================
+  PageRank Results — Parallel Centralised
+====================================================================
+  Graph:                15,657 nodes  |      25,576 edges
+  Workers:                   4
+  Iterations:                4
+  Damping factor:         0.85
+  Execution time:       0.5945s
+  Rank sum:           1.000000  (should be ~1.0)
+  Gini coefficient:    -0.0049  (0=equal, 1=concentrated)
+  Speedup:              0.1253x
+  Efficiency:           0.0313  (1.0 = perfect linear speedup)
+  Parallel fraction:    0.0000  (Amdahl estimate)
+
+  Per-iteration metrics:
+    Avg iter time:      0.1478s
+    Min task time:      0.0046s
+    Max task time:      0.0208s
+    Avg task time:      0.0086s
+    Load imbalance:       78.0%  (0% = perfect balance)
+    Peak memory:          0.20 MB/worker
+    Comm volume:         489.3 KB total
+
+  Convergence (delta per iteration):
+    Iter   1: 8.3623e-03  ████████
+    Iter   2: 6.0667e-05  ████████████████
+    Iter   3: 1.4456e-06  ███████████████████████
+    Iter   4: 3.6558e-08  █████████████████████████████
+
+  Top 10 Pages by PageRank:
+  ------------------------------------------------------------
+   1. 0.000160  Main_Page
+   2. 0.000160  Wikipedia:Contents
+   3. 0.000160  Portal:Current_events
+   4. 0.000160  Special:Random
+   5. 0.000160  Wikipedia:About
+   6. 0.000160  Wikipedia:Contact_us
+   7. 0.000160  Help:Contents
+   8. 0.000160  Help:Introduction
+   9. 0.000160  Wikipedia:Community_portal
+  10. 0.000160  Special:RecentChanges
+====================================================================
+
+14:09:04  INFO      pagerank_sequential — Validation PASSED | max_diff=0.00e+00  worst_node=None
+14:09:04  INFO      performance_analysis — Saved results -> results_test10_config1\pagerank_parallel_centralised.json
+14:09:04  INFO      main_pagerank — Phase 4: Parallel PageRank — Distributed Reduction ...
+14:09:04  INFO      pagerank_parallel — Parallel PageRank [Distributed] | nodes=15657  workers=4  partitions=4
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   1 | delta=9.67e-05 | iter_time=5.3868s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   2 | delta=6.62e-05 | iter_time=0.1449s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   3 | delta=5.65e-05 | iter_time=0.1213s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   4 | delta=4.94e-05 | iter_time=0.1007s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   5 | delta=5.03e-06 | iter_time=0.0859s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   6 | delta=6.73e-06 | iter_time=0.0865s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   7 | delta=5.70e-06 | iter_time=0.0902s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   8 | delta=5.40e-05 | iter_time=0.1112s
+14:09:10  INFO      pagerank_parallel —   [Distributed] Iteration   9 | delta=4.39e-05 | iter_time=0.0608s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  10 | delta=1.41e-05 | iter_time=0.0923s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  11 | delta=7.04e-06 | iter_time=0.0588s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  12 | delta=5.97e-06 | iter_time=0.0580s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  13 | delta=5.07e-06 | iter_time=0.0594s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  14 | delta=4.31e-06 | iter_time=0.0628s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  15 | delta=3.66e-06 | iter_time=0.0573s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  16 | delta=3.11e-06 | iter_time=0.0589s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  17 | delta=2.65e-06 | iter_time=0.0609s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  18 | delta=2.25e-06 | iter_time=0.1293s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  19 | delta=1.91e-06 | iter_time=0.0551s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  20 | delta=1.63e-06 | iter_time=0.0577s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  21 | delta=1.38e-06 | iter_time=0.0578s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  22 | delta=1.17e-06 | iter_time=0.0575s
+14:09:11  INFO      pagerank_parallel —   [Distributed] Iteration  23 | delta=9.98e-07 | iter_time=0.0635s
+14:09:11  INFO      pagerank_parallel — [Distributed] Converged at iteration 23 | delta=9.98e-07
+14:09:11  INFO      pagerank_parallel — [Distributed] Done | time=7.124s  iterations=23  load_imbalance=85.2%
+
+====================================================================
+  PageRank Results — Parallel Distributed
+====================================================================
+  Graph:                15,657 nodes  |      25,576 edges
+  Workers:                   4
+  Iterations:               23
+  Damping factor:         0.85
+  Execution time:       7.1238s
+  Rank sum:           0.968049  (should be ~1.0)
+  Gini coefficient:    -0.0049  (0=equal, 1=concentrated)
+  Speedup:              0.0105x
+  Efficiency:           0.0026  (1.0 = perfect linear speedup)
+  Parallel fraction:    0.0000  (Amdahl estimate)
+
+  Per-iteration metrics:
+    Avg iter time:      0.3095s
+    Min task time:      0.0029s
+    Max task time:      0.0199s
+    Avg task time:      0.0071s
+    Load imbalance:       85.2%  (0% = perfect balance)
+    Peak memory:          0.16 MB/worker
+    Comm volume:        2813.4 KB total
+
+  Convergence (delta per iteration):
+    Iter   1: 9.6722e-05  ████████████████
+    Iter   2: 6.6217e-05  ████████████████
+    Iter   3: 5.6480e-05  ████████████████
+    Iter   4: 4.9394e-05  █████████████████
+    Iter   5: 5.0332e-06  █████████████████████
+    Iter   6: 6.7278e-06  ████████████████████
+    Iter   7: 5.7041e-06  ████████████████████
+    Iter   8: 5.4042e-05  █████████████████
+    Iter   9: 4.3933e-05  █████████████████
+    Iter  10: 1.4056e-05  ███████████████████
+    Iter  11: 7.0363e-06  ████████████████████
+    Iter  12: 5.9695e-06  ████████████████████
+    Iter  13: 5.0711e-06  █████████████████████
+    Iter  14: 4.3104e-06  █████████████████████
+    Iter  15: 3.6638e-06  █████████████████████
+    Iter  16: 3.1142e-06  ██████████████████████
+    Iter  17: 2.6471e-06  ██████████████████████
+    Iter  18: 2.2500e-06  ██████████████████████
+    Iter  19: 1.9125e-06  ██████████████████████
+    Iter  20: 1.6256e-06  ███████████████████████
+    Iter  21: 1.3818e-06  ███████████████████████
+    Iter  22: 1.1745e-06  ███████████████████████
+    Iter  23: 9.9835e-07  ████████████████████████
+
+  Top 10 Pages by PageRank:
+  ------------------------------------------------------------
+   1. 0.000154  Main_Page
+   2. 0.000154  Wikipedia:Contents
+   3. 0.000154  Portal:Current_events
+   4. 0.000154  Special:Random
+   5. 0.000154  Wikipedia:About
+   6. 0.000154  Wikipedia:Contact_us
+   7. 0.000154  Help:Contents
+   8. 0.000154  Help:Introduction
+   9. 0.000154  Wikipedia:Community_portal
+  10. 0.000154  Special:RecentChanges
+====================================================================
+
+14:09:11  INFO      pagerank_sequential — Validation PASSED | max_diff=5.66e-06  worst_node=https://en.wikipedia.org/wiki/Main_Page
+14:09:11  INFO      performance_analysis — Saved results -> results_test10_config1\pagerank_parallel_distributed.json
+
+================================================================================
+  FULL PERFORMANCE COMPARISON
+================================================================================
+  Strategy                         Time   Speedup  Efficiency  Iters   CommKB  Imbal%
+  --------------------------------------------------------------------------------
+  Sequential (Custom)            0.0745    1.000x     1.0000      4      0.0    0.0%
+  Parallel Centralised           0.5945    0.125x     0.0313      4    489.3   78.0%
+  Parallel Distributed           7.1238    0.010x     0.0026     23   2813.4   85.2%
+================================================================================
+
+  AMDAHL'S LAW ANALYSIS
+  ------------------------------------------------------------
+  Centralised — estimated parallel fraction: 0.0000 (0.0%)
+  Distributed — estimated parallel fraction: 0.0000 (0.0%)
+
+  Theoretical max speedup (Amdahl) at p=0.00:
+      1 workers → 1.000x theoretical
+      2 workers → 1.000x theoretical
+      4 workers → 1.000x theoretical
+      8 workers → 1.000x theoretical
+     16 workers → 1.000x theoretical
+
+  COMMUNICATION OVERHEAD ANALYSIS
+  ------------------------------------------------------------
+  Centralised strategy:
+    Rank vector size: 15,657 floats × 8 bytes = 122.3 KB
+    Iterations:       4
+    Total comm:       489.3 KB (driver ↔ 4 workers)
+  Distributed strategy:
+    Chunk size/worker: 3,914 floats × 8 bytes = 30.6 KB
+    Actor overhead:    additional IPC per write call
+
+  LOAD IMBALANCE ANALYSIS
+  ------------------------------------------------------------
+  Centralised  — load imbalance: 78.0%
+  Distributed  — load imbalance: 85.2%
+  (0% = all workers finish at same time, 100% = extreme imbalance)
+
+  RANK DISTRIBUTION (Gini Coefficient)
+  ------------------------------------------------------------
+  Sequential:   -0.0049
+  Centralised:  -0.0049
+  Distributed:  -0.0049
+  (All should be ~equal — confirms algorithm correctness)
+================================================================================
+
+
+  CONVERGENCE RATE COMPARISON
+  -------------------------------------------------------
+  Iter    Sequential   Centralised   Distributed
+  -------------------------------------------------------
+     1    8.3623e-03    8.3623e-03    9.6722e-05
+     2    6.0667e-05    6.0667e-05    6.6217e-05
+     3    1.4456e-06    1.4456e-06    5.6480e-05
+     4    3.6558e-08    3.6558e-08    4.9394e-05
+     5     converged     converged    5.0332e-06
+     6     converged     converged    6.7278e-06
+     7     converged     converged    5.7041e-06
+     8     converged     converged    5.4042e-05
+     9     converged     converged    4.3933e-05
+    10     converged     converged    1.4056e-05
+    11     converged     converged    7.0363e-06
+    12     converged     converged    5.9695e-06
+    13     converged     converged    5.0711e-06
+    14     converged     converged    4.3104e-06
+    15     converged     converged    3.6638e-06
+    16     converged     converged    3.1142e-06
+    17     converged     converged    2.6471e-06
+    18     converged     converged    2.2500e-06
+    19     converged     converged    1.9125e-06
+    20     converged     converged    1.6256e-06
+    21     converged     converged    1.3818e-06
+    22     converged     converged    1.1745e-06
+    23     converged     converged    9.9835e-07
+
+  AMDAHL SCALABILITY PROJECTION
+  --------------------------------------------------
+  Estimated parallel fraction: 0.0000 (0.0%)
+   Workers   Theoretical Speedup
+         1                1.0000x
+         2                1.0000x
+         4                1.0000x
+         8                1.0000x
+        16                1.0000x
+        32                1.0000x
+
+14:09:14  INFO      main_pagerank — Ray shut down. Milestone 2 complete.

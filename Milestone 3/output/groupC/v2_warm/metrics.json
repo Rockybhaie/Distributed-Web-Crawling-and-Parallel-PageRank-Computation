@@ -1,0 +1,146 @@
+{
+  "run_name": "v2_warm",
+  "metadata": {
+    "update_strategy": "warm",
+    "partition_strategy": "range",
+    "num_workers": 4,
+    "num_nodes": 61720,
+    "num_edges": 110464,
+    "prev_scores_count": 45830,
+    "damping_factor": 0.85,
+    "convergence_threshold": 1e-06,
+    "snapshot_path": "snapshots\\graph_v2.pkl"
+  },
+  "total_wall_time_s": 0.6197373000904918,
+  "num_iterations": 4,
+  "avg_iteration_time_s": 0.1449201499344781,
+  "total_compute_time_s": 0.11648760014213622,
+  "total_barrier_wait_s": 0.45253159990534186,
+  "total_comm_bytes": 11113800,
+  "total_comm_kb": 10853.3203125,
+  "avg_load_imbalance": 0.40575950043972586,
+  "driver_rss_baseline_mb": 233.80078125,
+  "driver_rss_peak_mb": 248.1875,
+  "peak_worker_rss_mb": 0.8515625,
+  "final_delta": 1.9661412089347442e-07,
+  "extras": {
+    "num_iterations": 4,
+    "rank_sum": 0.9999999999996596
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "wall_time_s": 0.26637539989314973,
+      "barrier_wait_s": 0.23035049997270107,
+      "compute_time_s": 0.03358830022625625,
+      "delta": 0.10332026269461332,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 239.57421875,
+      "worker_task_times_s": [
+        0.034731300082057714,
+        0.030447599943727255,
+        0.0298913000151515,
+        0.0189648000523448
+      ],
+      "worker_peak_rss_mb": [
+        0.6484375,
+        0.7265625,
+        0.6875,
+        0.7265625
+      ],
+      "task_min_s": 0.0189648000523448,
+      "task_max_s": 0.034731300082057714,
+      "task_avg_s": 0.028508750023320317,
+      "task_std_s": 0.00672006184931237,
+      "load_imbalance": 0.453956517391007,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 2,
+      "wall_time_s": 0.10308300005272031,
+      "barrier_wait_s": 0.07292329985648394,
+      "compute_time_s": 0.027763500111177564,
+      "delta": 0.0008332197906385805,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 245.65234375,
+      "worker_task_times_s": [
+        0.03200250002555549,
+        0.01972510013729334,
+        0.01817349996417761,
+        0.017618299927562475
+      ],
+      "worker_peak_rss_mb": [
+        0.69140625,
+        0.8515625,
+        0.75390625,
+        0.80078125
+      ],
+      "task_min_s": 0.017618299927562475,
+      "task_max_s": 0.03200250002555549,
+      "task_avg_s": 0.02187985001364723,
+      "task_std_s": 0.006807075488505713,
+      "load_imbalance": 0.4494711377706917,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 3,
+      "wall_time_s": 0.103557099821046,
+      "barrier_wait_s": 0.07202930003404617,
+      "compute_time_s": 0.02833369979634881,
+      "delta": 7.618769070272978e-06,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 246.82421875,
+      "worker_task_times_s": [
+        0.03073740005493164,
+        0.0218450000975281,
+        0.021108399843797088,
+        0.017907599918544292
+      ],
+      "worker_peak_rss_mb": [
+        0.68359375,
+        0.72265625,
+        0.77734375,
+        0.72265625
+      ],
+      "task_min_s": 0.017907599918544292,
+      "task_max_s": 0.03073740005493164,
+      "task_avg_s": 0.02289959997870028,
+      "task_std_s": 0.0054976283816513495,
+      "load_imbalance": 0.41740030430221375,
+      "dirty_node_count": null
+    },
+    {
+      "iteration": 4,
+      "wall_time_s": 0.10666509997099638,
+      "barrier_wait_s": 0.07722850004211068,
+      "compute_time_s": 0.02680210000835359,
+      "delta": 1.9661412089347442e-07,
+      "comm_bytes": 2778450,
+      "driver_rss_mb": 248.1875,
+      "worker_task_times_s": [
+        0.030614800052717328,
+        0.02776949992403388,
+        0.021362700033932924,
+        0.026028400054201484
+      ],
+      "worker_peak_rss_mb": [
+        0.7734375,
+        0.84375,
+        0.72265625,
+        0.74609375
+      ],
+      "task_min_s": 0.021362700033932924,
+      "task_max_s": 0.030614800052717328,
+      "task_avg_s": 0.026443850016221404,
+      "task_std_s": 0.00387921193450771,
+      "load_imbalance": 0.30221004229499127,
+      "dirty_node_count": null
+    }
+  ],
+  "accuracy_vs_full": {
+    "max_abs_diff": 4.137664662935345e-11,
+    "l1_diff": 1.3673546888769584e-08,
+    "l2_diff": 2.8903748819218163e-10,
+    "missing_nodes": 0
+  }
+}

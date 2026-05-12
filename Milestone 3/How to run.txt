@@ -1,0 +1,211 @@
+How to run (MILESTONE 3)
+
+Prerequisite: Python 3.11+ (3.11 / 3.12 recommended).
+
+------------------------------
+STEP 1 - FILE STRUCTURE CHECK
+------------------------------
+
+After cloning, your project directory should look like this:
+
+  Project Final Final Final/
+  |-- Milestone 1/                  (already done; M3 imports from this)
+  |-- Milestone 2/                  (already done; M3 imports from this)
+  |-- Milestone 3/
+      |-- m3_config.py
+      |-- instrumentation.py
+      |-- partitioning_strategies.py
+      |-- incremental_crawler.py
+      |-- incremental_pagerank.py
+      |-- evaluation_runner.py
+      |-- plot_results.py
+      |-- m3_main.py
+      |-- requirements_m3.txt
+      |-- How to run.txt           (this file)
+      |-- snapshots/               (versioned graphs are written here)
+      |-- cache/                   (per-URL CC cache)
+      |-- output/                  (run metrics + figures)
+  
+
+-------------------------------------------------
+STEP 2 - CREATE & ACTIVATE A VIRTUAL ENVIRONMENT
+-------------------------------------------------
+
+If you already have the Milestone 1 / Milestone 2 venv (named `venv` at the
+repo root), reuse it. Otherwise create one:
+
+  python -m venv venv
+
+Activate it:
+
+  Windows PowerShell : venv\Scripts\Activate.ps1
+  Windows cmd        : venv\Scripts\activate.bat
+  macOS / Linux      : source venv/bin/activate
+
+When the environment is active your prompt should be prefixed with `(venv)`.
+
+------------------------------
+STEP 3 - INSTALL DEPENDENCIES
+------------------------------
+
+  cd "Milestone 3"
+  pip install -r requirements_m3.txt
+
+This installs all requried libraries and dependies required to run the codebase:
+  ray, networkx, numpy, scipy, requests, warcio, beautifulsoup4, lxml,
+  psutil, matplotlib, pandas, tqdm
+
+--------------------------
+STEP 4 - QUICK SMOKE TEST 
+--------------------------
+
+This loads the existing Milestone 1 Config 3 graph as snapshot v0 and runs
+sequential PageRank on it. If it converges in ~4 iterations, the pipeline is
+healthy.
+
+  python m3_main.py pagerank --snapshot snapshots/graph_v0.pkl --update sequential --run-name smoke_seq
+
+If `snapshots/graph_v0.pkl` doesn't exist yet, it will be auto-created from
+`../Milestone 1/All config outputs/Config3/web_graph.pkl`.
+
+------------------------------------
+STEP 5 - RUN THE INCREMENTAL CRAWLS
+------------------------------------
+
+The growth plan in m3_config.py adds three incremental snapshots:
+   v1 = v0 + 100 new pages (~5% growth)
+   v2 = v1 + 200 new pages (~10% growth)
+   v3 = v2 + 500 new pages (~25% growth)
+
+Run all three steps:
+
+  python m3_main.py crawl-incremental --all --workers 4
+
+Or one step at a time:
+
+  python m3_main.py crawl-incremental --version 1
+  python m3_main.py crawl-incremental --version 2
+  python m3_main.py crawl-incremental --version 3
+
+After this completes, `snapshots/` will contain graph_v0, graph_v1, graph_v2,
+graph_v3 (each as .pkl, .json, _edges.csv) plus delta_vK_v(K+1).json files
+that record what nodes/edges were added in each step.
+
+NOTE on CommonCrawl: the first run will hit api.commoncrawl.org and the
+WARC archives at data.commoncrawl.org. Every successful fetch is cached to
+`cache/` so subsequent runs (including the evaluation phase) require zero
+network access. If the CDX server is currently unavailable, wait and retry;
+once any one successful crawl populates the cache, all later experiments
+are reproducible offline.
+
+-----------------------------------
+STEP 6 - RUN THE EVALUATION MATRIX
+-----------------------------------
+
+Three experimental groups, matching the project spec:
+
+  Group A: Sequential vs Parallel  (1, 2, 4 workers; centralised)
+  Group B: Different partitioning  (range vs hash vs edge_balanced)
+  Group C: Static vs Incremental   (full / warm / localised across snapshots)
+
+Run everything:
+
+  python m3_main.py evaluate --group all --workers 4
+
+Run one group only:
+
+  python m3_main.py evaluate --group A --workers 4
+  python m3_main.py evaluate --group B --workers 4
+  python m3_main.py evaluate --group C --workers 4
+
+Smoke test (reduced sub-matrix, ~2 minutes):
+
+  python m3_main.py evaluate --group all --quick
+
+All metrics are written to `output/<group>/<run_name>/metrics.json` plus
+`output/evaluation_index.json` which tracks every run.
+
+---------------------------
+STEP 7 - GENERATE FIGURES
+---------------------------
+
+Once the evaluation has finished, produce all figures (PNG + PDF):
+
+  python m3_main.py plot
+
+Figures land in `output/figures/`:
+
+  fig_groupA_speedup.{png,pdf}
+  fig_groupA_time_bars.{png,pdf}
+  fig_groupA_convergence.{png,pdf}
+  fig_groupB_imbalance.{png,pdf}
+  fig_groupB_comm.{png,pdf}
+  fig_groupB_time.{png,pdf}
+  fig_groupC_time_strategies.{png,pdf}
+  fig_groupC_time_vs_accuracy.{png,pdf}    (the headline cost-vs-accuracy plot)
+  fig_groupC_iterations.{png,pdf}
+  fig_groupC_dirty_fraction.{png,pdf}
+  fig_groupC_accuracy.{png,pdf}
+  fig_memory_timeline.{png,pdf}
+
+----------------------------------------------------------------
+STEP 8 - INDIVIDUAL PAGERANK RUNS (for debugging / ad-hoc tests)
+----------------------------------------------------------------
+
+Run any single PageRank computation by combining flags:
+
+  --snapshot   path to a graph_vN.pkl
+  --update     sequential | full | warm | localised
+  --partition  range | hash | edge_balanced  (parallel only)
+  --workers    int
+  --damping    0.0 - 1.0
+  --max-iter   int
+  --threshold  float
+  --no-convergence
+  --prev-scores  path to scores_full.json   (warm / localised)
+  --delta        path to delta_vK_v(K+1).json (localised)
+
+Examples:
+
+  # Cold parallel pagerank with hash partitioning, 4 workers.
+  python m3_main.py pagerank --snapshot snapshots/graph_v1.pkl ^
+                             --update full --partition hash --workers 4
+
+  # Warm-start using v0 reference scores.
+  python m3_main.py pagerank --snapshot snapshots/graph_v1.pkl ^
+                             --update warm --workers 4 ^
+                             --prev-scores output/groupC/v0_full/scores_full.json
+
+  # Localised update.
+  python m3_main.py pagerank --snapshot snapshots/graph_v1.pkl ^
+                             --update localised --workers 4 ^
+                             --prev-scores output/groupC/v0_full/scores_full.json ^
+                             --delta snapshots/delta_v0_v1.json
+
+
+
+----------------------------------------------------------------------------
+STEP 9 - DEACTIVATE THE ENVIRONMENT
+----------------------------------------------------------------------------
+
+When done:
+
+  deactivate
+
+
+
+----------------------------------------------------------------------------
+DISTRIBUTED MODE (optional)
+----------------------------------------------------------------------------
+
+To run on a Ray cluster across multiple machines:
+
+  # On the head node:
+  ray start --head --port=6379
+
+  # On each worker node:
+  ray start --address='<head-node-ip>:6379'
+
+  # Run any subcommand against the cluster:
+  python m3_main.py evaluate --group all --workers 16 ^
+                             --ray-address ray://<head-node-ip>:10001

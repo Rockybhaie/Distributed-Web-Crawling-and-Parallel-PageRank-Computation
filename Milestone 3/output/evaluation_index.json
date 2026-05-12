@@ -1,0 +1,165 @@
+{
+  "started_at": "2026-04-29 16:27:15",
+  "config": {
+    "initial_graph_path": "../Milestone 1/All config outputs/Config3/web_graph.pkl",
+    "snapshot_dir": "snapshots",
+    "cache_dir": "cache",
+    "crawl_index": "CC-MAIN-2024-10",
+    "target_domain": "en.wikipedia.org",
+    "restrict_to_domain": "en.wikipedia.org",
+    "max_links_per_page": 150,
+    "request_timeout": 30,
+    "max_retries": 5,
+    "user_agent": "PDC-Course-Crawler-M3/1.0 (academic project; uses CommonCrawl data only - no live crawling)",
+    "growth_plan": [
+      [
+        500,
+        100
+      ],
+      [
+        600,
+        200
+      ],
+      [
+        800,
+        500
+      ]
+    ],
+    "crawl_batch_size": 25,
+    "damping_factor": 0.85,
+    "max_iterations": 100,
+    "convergence_threshold": 1e-06,
+    "use_convergence": true,
+    "num_workers": 4,
+    "num_partitions": 4,
+    "partition_strategy": "range",
+    "update_strategy": "full",
+    "affected_hop_radius": 2,
+    "execution_strategy": "centralized",
+    "output_dir": "output",
+    "save_scores": true,
+    "save_metrics": true
+  },
+  "groups": {
+    "C": [
+      {
+        "transition": "v0->v1",
+        "full": {
+          "dir": "output\\groupC\\v1_full",
+          "elapsed_s": 0.5637556000147015,
+          "iterations": 4
+        },
+        "warm": {
+          "dir": "output\\groupC\\v1_warm",
+          "elapsed_s": 0.522423000074923,
+          "iterations": 4,
+          "accuracy": {
+            "max_abs_diff": 3.859931192490458e-11,
+            "l1_diff": 1.2101400184356991e-08,
+            "l2_diff": 2.6828323744864933e-10,
+            "missing_nodes": 0
+          }
+        },
+        "localised": {
+          "dir": "output\\groupC\\v1_localised",
+          "elapsed_s": 0.6793150999583304,
+          "iterations": 8,
+          "dirty_node_count": 11874,
+          "accuracy": {
+            "max_abs_diff": 1.3105121017077724e-07,
+            "l1_diff": 0.0026966123638075858,
+            "l2_diff": 1.4377754091855167e-05,
+            "missing_nodes": 0
+          }
+        },
+        "delta_summary": {
+          "prev_node_count": 37074,
+          "new_node_count": 45830,
+          "added_nodes": 8756,
+          "prev_edge_count": 67667,
+          "new_edge_count": 82550,
+          "added_edges": 14883
+        }
+      },
+      {
+        "transition": "v1->v2",
+        "full": {
+          "dir": "output\\groupC\\v2_full",
+          "elapsed_s": 0.7184439999982715,
+          "iterations": 4
+        },
+        "warm": {
+          "dir": "output\\groupC\\v2_warm",
+          "elapsed_s": 0.6197373000904918,
+          "iterations": 4,
+          "accuracy": {
+            "max_abs_diff": 4.137664662935345e-11,
+            "l1_diff": 1.3673546888769584e-08,
+            "l2_diff": 2.8903748819218163e-10,
+            "missing_nodes": 0
+          }
+        },
+        "localised": {
+          "dir": "output\\groupC\\v2_localised",
+          "elapsed_s": 0.9931656999979168,
+          "iterations": 10,
+          "dirty_node_count": 20107,
+          "accuracy": {
+            "max_abs_diff": 1.75869205343617e-07,
+            "l1_diff": 0.006093915306185396,
+            "l2_diff": 2.6173738197512962e-05,
+            "missing_nodes": 0
+          }
+        },
+        "delta_summary": {
+          "prev_node_count": 45830,
+          "new_node_count": 61720,
+          "added_nodes": 15890,
+          "prev_edge_count": 82550,
+          "new_edge_count": 110464,
+          "added_edges": 27914
+        }
+      },
+      {
+        "transition": "v2->v3",
+        "full": {
+          "dir": "output\\groupC\\v3_full",
+          "elapsed_s": 1.3077527000568807,
+          "iterations": 4
+        },
+        "warm": {
+          "dir": "output\\groupC\\v3_warm",
+          "elapsed_s": 0.825668100034818,
+          "iterations": 4,
+          "accuracy": {
+            "max_abs_diff": 5.288155024009249e-11,
+            "l1_diff": 1.9136113118210627e-08,
+            "l2_diff": 3.5086078296425867e-10,
+            "missing_nodes": 0
+          }
+        },
+        "localised": {
+          "dir": "output\\groupC\\v3_localised",
+          "elapsed_s": 2.0866437999065965,
+          "iterations": 14,
+          "dirty_node_count": 48316,
+          "accuracy": {
+            "max_abs_diff": 2.4885677172220767e-07,
+            "l1_diff": 0.01899254550150963,
+            "l2_diff": 6.015579620458533e-05,
+            "missing_nodes": 0
+          }
+        },
+        "delta_summary": {
+          "prev_node_count": 61720,
+          "new_node_count": 99803,
+          "added_nodes": 38083,
+          "prev_edge_count": 110464,
+          "new_edge_count": 178696,
+          "added_edges": 68232
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-04-29 16:31:07"
+}
